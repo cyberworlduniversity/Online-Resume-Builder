@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Online Resume Builder for students to create professional resumes">
+
+    <title>Online Resume Builder</title>
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <span>📄</span>
+                <h1>Online Resume Builder</h1>
+            </div>
+
+            <p class="header-subtitle">
+                Create your professional resume easily
+            </p>
+
+            <nav class="top-nav" aria-label="Primary navigation">
+                <button
+                    type="button"
+                    id="navAtsBtn"
+                    class="nav-btn"
+                >
+                    ATS Resume Check
+                </button>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTAINER
+    ========================== -->
+    <main class="container main-container" id="mainContainer">
+
+        <!-- =========================
+             RESUME FORM
+        ========================== -->
+        <section class="form-section">
+
+            <div class="section-heading">
+                <h2>Build Your Resume</h2>
+                <p>Enter your details below to create your professional resume.</p>
+            </div>
+
+
+            <!-- =========================
+                 PERSONAL DETAILS
+            ========================== -->
+            <div class="form-card">
+
+                <h3>👤 Personal Details</h3>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="Enter your full name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobTitle">Professional Title</label>
+                        <input
+                            type="text"
+                            id="jobTitle"
+                            name="jobTitle"
+                            placeholder="e.g. B.Sc. Computer Science Student"
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="example@email.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="+91 XXXXX XXXXX"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+
+                    <textarea
+                        id="address"
+                        name="address"
+                        rows="3"
+                        placeholder="Enter your address"
+                    ></textarea>
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="linkedin">LinkedIn Profile</label>
+
+                        <input
+                            type="url"
+                            id="linkedin"
+                            name="linkedin"
+                            placeholder="https://linkedin.com/in/yourname"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="github">GitHub Profile</label>
+
+                        <input
+                            type="url"
+                            id="github"
+                            name="github"
+                            placeholder="https://github.com/yourname"
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <label for="portfolio">Portfolio Website</label>
+
+                    <input
+                        type="url"
+                        id="portfolio"
+                        name="portfolio"
+                        placeholder="https://yourwebsite.com"
+                    >
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 PROFESSIONAL SUMMARY
+            ========================== -->
+            <div class="form-card">
+
+                <h3>📝 Professional Summary</h3>
+
+                <div class="form-group">
+
+                    <label for="summary">
+                        Career Objective / Profile Summary
+                    </label>
+
+                    <textarea
+                        id="summary"
+                        name="summary"
+                        rows="5"
+                        placeholder="Write a short professional summary about yourself..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 EDUCATION
+            ========================== -->
+            <div class="form-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>🎓 Education</h3>
+                        <p>Add your educational qualifications.</p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="add-btn"
+                        id="addEducationBtn"
+                    >
+                        + Add Education
+                    </button>
+
+                </div>
+
+
+                <div id="educationContainer">
+
+                    <!-- Education Entry -->
+
+                    <div class="dynamic-item education-item">
+
+                        <div class="item-header">
+                            <h4>Education 1</h4>
+
+                            <button
+                                type="button"
+                                class="remove-btn"
+                            >
+                                Remove
+                            </button>
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label>Degree / Course</label>
+
+                                <input
+                                    type="text"
+                                    name="degree[]"
+                                    placeholder="e.g. B.Sc. Computer Science"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>Institution / College</label>
+
+                                <input
+                                    type="text"
+                                    name="institution[]"
+                                    placeholder="Enter college/university name"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label>Department</label>
+
+                                <input
+                                    type="text"
+                                    name="department[]"
+                                    placeholder="e.g. Computer Science"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>Location</label>
+
+                                <input
+                                    type="text"
+                                    name="educationLocation[]"
+                                    placeholder="City, State"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label>Start Year</label>
+
+                                <input
+                                    type="text"
+                                    name="educationStart[]"
+                                    placeholder="2024"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>End Year</label>
+
+                                <input
+                                    type="text"
+                                    name="educationEnd[]"
+                                    placeholder="2027 / Present"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>CGPA / Percentage</label>
+
+                                <input
+                                    type="text"
+                                    name="grade[]"
+                                    placeholder="e.g. 8.5 CGPA"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 SKILLS
+            ========================== -->
+            <div class="form-card">
+
+                <h3>💻 Skills</h3>
+
+                <p class="form-help">
+                    Enter your skills separated by commas.
+                </p>
+
+
+                <div class="form-group">
+
+                    <label for="technicalSkills">
+                        Technical Skills
+                    </label>
+
+                    <input
+                        type="text"
+                        id="technicalSkills"
+                        name="technicalSkills"
+                        placeholder="HTML, CSS, JavaScript, Python, Java, SQL"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="softSkills">
+                        Soft Skills
+                    </label>
+
+                    <input
+                        type="text"
+                        id="softSkills"
+                        name="softSkills"
+                        placeholder="Communication, Teamwork, Leadership"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="tools">
+                        Tools & Technologies
+                    </label>
+
+                    <input
+                        type="text"
+                        id="tools"
+                        name="tools"
+                        placeholder="Git, GitHub, VS Code, Linux"
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 PROJECTS
+            ========================== -->
+            <div class="form-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>📁 Projects</h3>
+                        <p>Add your academic or personal projects.</p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="add-btn"
+                        id="addProjectBtn"
+                    >
+                        + Add Project
+                    </button>
+
+                </div>
+
+
+                <div id="projectsContainer">
+
+                    <!-- Project Entry -->
+
+                    <div class="dynamic-item project-item">
+
+                        <div class="item-header">
+
+                            <h4>Project 1</h4>
+
+                            <button
+                                type="button"
+                                class="remove-btn"
+                            >
+                                Remove
+                            </button>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Project Title</label>
+
+                            <input
+                                type="text"
+                                name="projectTitle[]"
+                                placeholder="e.g. Online Resume Builder"
+                            >
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label>Technologies Used</label>
+
+                                <input
+                                    type="text"
+                                    name="projectTechnology[]"
+                                    placeholder="HTML, CSS, JavaScript"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>Project Link</label>
+
+                                <input
+                                    type="url"
+                                    name="projectLink[]"
+                                    placeholder="https://github.com/..."
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Project Description</label>
+
+                            <textarea
+                                name="projectDescription[]"
+                                rows="4"
+                                placeholder="Describe your project, your role, and the main features..."
+                            ></textarea>
+
+                        </div>
+                        
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 CERTIFICATIONS
+            ========================== -->
+            <div class="form-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>📜 Certifications</h3>
+                        <p>Add your certifications and achievements.</p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="add-btn"
+                        id="addCertificationBtn"
+                    >
+                        + Add Certification
+                    </button>
+
+                </div>
+
+
+                <div id="certificationsContainer">
+
+                    <!-- Certification Entry -->
+
+                    <div class="dynamic-item certification-item">
+
+                        <div class="item-header">
+
+                            <h4>Certification 1</h4>
+
+                            <button
+                                type="button"
+                                class="remove-btn"
+                            >
+                                Remove
+                            </button>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label>Certification Name</label>
+
+                                <input
+                                    type="text"
+                                    name="certificationName[]"
+                                    placeholder="e.g. Certified Ethical Hacker"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>Issuing Organization</label>
+
+                                <input
+                                    type="text"
+                                    name="certificationOrganization[]"
+                                    placeholder="e.g. EC-Council"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label>Issue Year</label>
+
+                                <input
+                                    type="text"
+                                    name="certificationYear[]"
+                                    placeholder="2026"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>Credential ID</label>
+
+                                <input
+                                    type="text"
+                                    name="credentialId[]"
+                                    placeholder="Optional"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Credential / Certificate Link</label>
+
+                            <input
+                                type="url"
+                                name="certificateLink[]"
+                                placeholder="https://..."
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 ACHIEVEMENTS
+            ========================== -->
+            <div class="form-card">
+
+                <h3>🏆 Achievements</h3>
+
+                <div class="form-group">
+
+                    <label for="achievements">
+                        Achievements / Awards
+                    </label>
+
+                    <textarea
+                        id="achievements"
+                        name="achievements"
+                        rows="5"
+                        placeholder="Enter your achievements, awards, competitions, workshops, etc."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 LANGUAGES
+            ========================== -->
+            <div class="form-card">
+
+                <h3>🌐 Languages</h3>
+
+                <div class="form-group">
+
+                    <label for="languages">
+                        Languages Known
+                    </label>
+
+                    <input
+                        type="text"
+                        id="languages"
+                        name="languages"
+                        placeholder="Tamil, English, Hindi"
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 FORM BUTTONS
+            ========================== -->
+            <div class="action-buttons">
+
+                <button
+                    type="button"
+                    id="generateResumeBtn"
+                    class="primary-btn"
+                >
+                    Next: Resume Preview →
+                </button>
+
+
+                <button
+                    type="reset"
+                    id="resetBtn"
+                    class="secondary-btn"
+                >
+                    🔄 Reset Form
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             RESUME PREVIEW
+        ========================== -->
+        <section class="preview-section">
+
+            <div class="preview-header">
+
+                <div>
+                    <h2>Resume Preview</h2>
+
+                    <p>
+                        Your professional resume will appear here.
+                    </p>
+                </div>
+
+
+                <div class="preview-actions">
+                    <button
+                        type="button"
+                        id="backToEditorBtn"
+                        class="back-btn"
+                    >
+                        ← Back to Edit
+                    </button>
+
+                    <button
+                        type="button"
+                        id="atsCheckBtn"
+                        class="ats-btn"
+                    >
+                        ✓ ATS Check
+                    </button>
+
+                    <button
+                        type="button"
+                        id="downloadResumeBtn"
+                        class="download-btn"
+                        aria-label="Download resume as PDF"
+                        title="Download resume as PDF"
+                        >
+                            ↓ Download PDF
+                    </button>
+
+                    <button
+                        type="button"
+                        id="printResumeBtn"
+                        class="print-btn"
+                    >
+                        🖨️ Print / Save PDF
+                    </button>
+                </div>
+
+            </div>
+
+            <div
+                id="atsResult"
+                class="ats-result"
+                role="status"
+                aria-live="polite"
+                hidden
+            ></div>
+
+            <div class="upload-checker" id="uploadChecker">
+                <button
+                    type="button"
+                    id="backFromAtsBtn"
+                    class="back-btn"
+                >
+                    ← Back to Resume Builder
+                </button>
+
+                <div>
+                    <h3>Check an existing resume</h3>
+                    <p>Upload a text-based resume file to scan it for ATS basics.</p>
+                </div>
+
+                <div class="upload-controls">
+                    <label class="file-picker" for="resumeFile">
+                        Choose resume file
+                        <input
+                            type="file"
+                            id="resumeFile"
+                            accept=".txt,.md,.html,text/plain,text/markdown,text/html"
+                        >
+                    </label>
+
+                    <button
+                        type="button"
+                        id="uploadCheckBtn"
+                        class="upload-check-btn"
+                    >
+                        Check upload
+                    </button>
+
+                    <button
+                        type="button"
+                        id="removeResumeFileBtn"
+                        class="remove-file-btn"
+                        hidden
+                    >
+                        Remove file
+                    </button>
+                </div>
+
+                <p id="uploadFileName" class="upload-file-name">No file selected</p>
+                <div id="uploadResult" class="upload-result" role="status" aria-live="polite" hidden></div>
+            </div>
+
+
+            <!-- =========================
+                 RESUME DOCUMENT
+            ========================== -->
+            <div id="resumePreview" class="resume-preview">
+
+                <!-- Resume Header -->
+
+                <div class="resume-header">
+
+                    <h1 id="previewName">
+                        Your Name
+                    </h1>
+
+                    <h2 id="previewJobTitle">
+                        Professional Title
+                    </h2>
+
+
+                    <div class="contact-info">
+
+                        <span id="previewEmail">
+                            email@example.com
+                        </span>
+
+                        <span id="previewPhone">
+                            +91 XXXXX XXXXX
+                        </span>
+
+                        <span id="previewAddress">
+                            Your Address
+                        </span>
+
+                    </div>
+
+
+                    <div class="profile-links">
+
+                        <a
+                            id="previewLinkedin"
+                            href="#"
+                            target="_blank"
+                        >
+                            LinkedIn
+                        </a>
+
+                        <a
+                            id="previewGithub"
+                            href="#"
+                            target="_blank"
+                        >
+                            GitHub
+                        </a>
+
+                        <a
+                            id="previewPortfolio"
+                            href="#"
+                            target="_blank"
+                        >
+                            Portfolio
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Professional Summary -->
+
+                <div
+                    class="resume-section"
+                    id="previewSummarySection"
+                >
+
+                    <h3>PROFILE</h3>
+
+                    <p id="previewSummary">
+                        Your professional summary will appear here.
+                    </p>
+
+                </div>
+
+
+
+                <!-- Education -->
+
+                <div
+                    class="resume-section"
+                    id="previewEducationSection"
+                >
+
+                    <h3>EDUCATION</h3>
+
+                    <div id="previewEducation">
+
+                        <div class="preview-placeholder">
+                            Education details will appear here.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Skills -->
+
+                <div
+                    class="resume-section"
+                    id="previewSkillsSection"
+                >
+
+                    <h3>SKILLS</h3>
+
+                    <div class="skills-preview">
+
+                        <div>
+                            <strong>Technical Skills:</strong>
+
+                            <span id="previewTechnicalSkills">
+                                -
+                            </span>
+                        </div>
+
+
+                        <div>
+                            <strong>Soft Skills:</strong>
+
+                            <span id="previewSoftSkills">
+                                -
+                            </span>
+                        </div>
+
+
+                        <div>
+                            <strong>Tools:</strong>
+
+                            <span id="previewTools">
+                                -
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Projects -->
+
+                <div
+                    class="resume-section"
+                    id="previewProjectsSection"
+                >
+
+                    <h3>PROJECTS</h3>
+
+                    <div id="previewProjects">
+
+                        <div class="preview-placeholder">
+                            Your projects will appear here.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Certifications -->
+
+                <div
+                    class="resume-section"
+                    id="previewCertificationsSection"
+                >
+
+                    <h3>CERTIFICATIONS</h3>
+
+                    <div id="previewCertifications">
+
+                        <div class="preview-placeholder">
+                            Your certifications will appear here.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Achievements -->
+
+                <div
+                    class="resume-section"
+                    id="previewAchievementsSection"
+                >
+
+                    <h3>ACHIEVEMENTS</h3>
+
+                    <p id="previewAchievements">
+                        -
+                    </p>
+
+                </div>
+
+
+
+                <!-- Languages -->
+
+                <div
+                    class="resume-section"
+                    id="previewLanguagesSection"
+                >
+
+                    <h3>LANGUAGES</h3>
+
+                    <p id="previewLanguages">
+                        -
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <p>
+                © 2026 Online Resume Builder.
+                Designed for students and job seekers.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+
+</body>
+</html>
+

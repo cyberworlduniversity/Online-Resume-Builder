@@ -1,0 +1,1863 @@
+/* =========================================================
+   ONLINE RESUME BUILDER
+   Professional College Project CSS
+   ========================================================= */
+
+
+/* =========================================================
+   1. GLOBAL SETTINGS
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    background: #f3f6fb;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   2. COMMON CONTAINER
+   ========================================================= */
+
+.container {
+    width: 92%;
+    max-width: 1500px;
+    margin: auto;
+}
+
+
+/* =========================================================
+   3. HEADER
+   ========================================================= */
+
+.header {
+    background: linear-gradient(135deg, #172554, #2563eb);
+    color: white;
+    padding: 25px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo span {
+    font-size: 32px;
+}
+
+.logo h1 {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.header-subtitle {
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+
+/* =========================================================
+   4. MAIN LAYOUT
+   ========================================================= */
+
+.main-container {
+    display: grid;
+    grid-template-columns: minmax(400px, 1fr) minmax(500px, 1.1fr);
+    gap: 30px;
+    align-items: start;
+    padding: 35px 0 50px;
+}
+.main-container:not(.preview-only) .preview-section {
+    display: none;
+}
+
+.main-container:not(.preview-only):not(.ats-only) {
+    display: block;
+    max-width: 1000px;
+}
+
+.main-container:not(.preview-only):not(.ats-only) .form-section {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.main-container.preview-only {
+    display: block;
+    max-width: 1000px;
+}
+.main-container.preview-only .form-section {
+    display: none;
+}
+.main-container.preview-only .preview-section {
+    display: flex;
+    position: static;
+}
+.main-container.preview-only .upload-checker {
+     display: none !important;
+}
+
+.main-container.ats-only {
+    display: block;
+    max-width: 760px;
+}
+
+.main-container.ats-only .form-section,
+.main-container.ats-only .preview-header,
+.main-container.ats-only .resume-preview,
+.main-container.ats-only .ats-result {
+    display: none !important;
+}
+
+.main-container.ats-only .preview-header::after {
+    display: none;
+}
+
+.main-container.ats-only .preview-section {
+    display: block;
+    position: static;
+}
+
+.main-container.ats-only .upload-checker {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.main-container.ats-only .upload-checker > .back-btn {
+    display: inline-flex;
+}
+
+.main-container.ats-only .upload-controls {
+    justify-content: center;
+}
+
+.main-container.ats-only .upload-result {
+    align-items: center;
+    text-align: center;
+}
+
+.main-container.ats-only .upload-file-name {
+    text-align: center;
+}
+
+
+/* =========================================================
+   5. FORM SECTION
+   ========================================================= */
+
+.form-section {
+    min-width: 0;
+}
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+.section-heading h2 {
+    color: #172554;
+    font-size: 27px;
+    margin-bottom: 5px;
+}
+
+.section-heading p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   6. FORM CARDS
+   ========================================================= */
+
+.form-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.06);
+}
+
+.form-card h3 {
+    color: #172554;
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+
+.form-card > p {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.card-header h3 {
+    margin-bottom: 2px;
+}
+
+.card-header p {
+    color: #64748b;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   7. FORM ROWS
+   ========================================================= */
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.form-row:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Three-column row */
+
+.form-row:has(.form-group:nth-child(3)) {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+
+/* =========================================================
+   8. FORM GROUP
+   ========================================================= */
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+}
+
+
+/* =========================================================
+   9. INPUTS
+   ========================================================= */
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #1e293b;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: 0.25s ease;
+}
+
+input {
+    height: 45px;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #94a3b8;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* =========================================================
+   10. FORM HELP
+   ========================================================= */
+
+.form-help {
+    margin-bottom: 14px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   11. DYNAMIC ITEMS
+   ========================================================= */
+
+.dynamic-item {
+    background: #f8fafc;
+    border: 1px solid #dbe3ef;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 16px;
+}
+
+.dynamic-item:last-child {
+    margin-bottom: 0;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.item-header h4 {
+    color: #1e3a8a;
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   12. ADD BUTTON
+   ========================================================= */
+
+.add-btn {
+    border: none;
+    background: #2563eb;
+    color: white;
+    padding: 9px 14px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.2s ease;
+}
+
+.add-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   13. REMOVE BUTTON
+   ========================================================= */
+
+.remove-btn {
+    border: 1px solid #fecaca;
+    background: #fff1f2;
+    color: #dc2626;
+    padding: 7px 11px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.remove-btn:hover {
+    background: #fee2e2;
+}
+
+
+/* =========================================================
+   14. ACTION BUTTONS
+   ========================================================= */
+
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.primary-btn,
+.secondary-btn,
+.print-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 13px 20px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.primary-btn {
+    flex: 1;
+    background: #2563eb;
+    color: white;
+}
+
+.primary-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.secondary-btn {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.secondary-btn:hover {
+    background: #cbd5e1;
+}
+
+
+/* =========================================================
+   15. PREVIEW SECTION
+   ========================================================= */
+
+.preview-section {
+    min-width: 0;
+    position: sticky;
+    top: 20px;
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.preview-header h2 {
+    color: #172554;
+    font-size: 25px;
+    margin-bottom: 3px;
+}
+
+.preview-header p {
+    color: #64748b;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   16. PRINT BUTTON
+   ========================================================= */
+
+.print-btn {
+    background: #0f172a;
+    color: white;
+    white-space: nowrap;
+}
+
+.print-btn:hover {
+    background: #1e293b;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   17. RESUME PREVIEW
+   ========================================================= */
+
+.resume-preview {
+    width: 100%;
+    max-width: 850px;
+    min-height: 1100px;
+    margin: 0 auto;
+    padding: 55px 60px;
+    background: white;
+    border: 1px solid #dbe3ef;
+    box-shadow: 0 10px 35px rgba(15, 23, 42, 0.12);
+    color: #1f2937;
+}
+
+
+/* =========================================================
+   18. RESUME HEADER
+   ========================================================= */
+
+.resume-header {
+    text-align: center;
+    padding-bottom: 22px;
+    border-bottom: 2px solid #172554;
+}
+
+.resume-header h1 {
+    color: #172554;
+    font-size: 34px;
+    line-height: 1.2;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.resume-header h2 {
+    color: #475569;
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 14px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    color: #475569;
+    font-size: 12px;
+}
+
+.contact-info span:not(:last-child)::after {
+    content: "•";
+    margin-left: 18px;
+    color: #94a3b8;
+}
+
+.profile-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 8px;
+}
+
+.profile-links a {
+    color: #2563eb;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.profile-links a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   19. RESUME SECTIONS
+   ========================================================= */
+
+.resume-section {
+    margin-top: 24px;
+}
+
+.resume-section h3 {
+    color: #172554;
+    font-size: 15px;
+    letter-spacing: 1.2px;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 5px;
+    margin-bottom: 12px;
+}
+
+.resume-section p {
+    color: #374151;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   20. EDUCATION PREVIEW
+   ========================================================= */
+
+.education-preview-item {
+    margin-bottom: 16px;
+}
+
+.education-preview-item:last-child {
+    margin-bottom: 0;
+}
+
+.education-preview-item h4 {
+    color: #1e293b;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.education-preview-item .institution {
+    color: #475569;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.education-preview-item .education-details {
+    color: #64748b;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   21. SKILLS PREVIEW
+   ========================================================= */
+
+.skills-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.skills-preview div {
+    font-size: 13px;
+    color: #374151;
+}
+
+.skills-preview strong {
+    color: #1e293b;
+}
+
+
+/* =========================================================
+   22. PROJECT PREVIEW
+   ========================================================= */
+
+.project-preview-item {
+    margin-bottom: 17px;
+}
+
+.project-preview-item:last-child {
+    margin-bottom: 0;
+}
+
+.project-preview-item h4 {
+    color: #1e293b;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.project-preview-item .project-tech {
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.project-preview-item p {
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.project-preview-item a {
+    color: #2563eb;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.project-preview-item a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   23. CERTIFICATION PREVIEW
+   ========================================================= */
+
+.certification-preview-item {
+    margin-bottom: 13px;
+}
+
+.certification-preview-item:last-child {
+    margin-bottom: 0;
+}
+
+.certification-preview-item h4 {
+    color: #1e293b;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.certification-preview-item p {
+    color: #64748b;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   24. PLACEHOLDER
+   ========================================================= */
+
+.preview-placeholder {
+    color: #94a3b8;
+    font-size: 12px;
+    font-style: italic;
+    padding: 5px 0;
+}
+
+
+/* =========================================================
+   25. FOOTER
+   ========================================================= */
+
+.footer {
+    background: #172554;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer p {
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+
+/* =========================================================
+   26. SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #e2e8f0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+
+/* =========================================================
+   27. TABLET RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-section {
+        position: static;
+    }
+
+    .resume-preview {
+        max-width: 850px;
+    }
+
+    .form-row:has(.form-group:nth-child(3)) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* =========================================================
+   28. MOBILE RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .container {
+        width: 94%;
+    }
+
+    .header {
+        padding: 20px 0;
+    }
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo h1 {
+        font-size: 21px;
+    }
+
+    .header-subtitle {
+        font-size: 13px;
+    }
+
+    .main-container {
+        padding-top: 22px;
+        gap: 20px;
+    }
+
+    .form-card {
+        padding: 18px;
+    }
+
+    .section-heading h2 {
+        font-size: 23px;
+    }
+
+    .form-row,
+    .form-row:has(.form-group:nth-child(3)) {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .card-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .add-btn {
+        width: 100%;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+        width: 100%;
+    }
+
+    .preview-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .print-btn {
+        width: 100%;
+    }
+
+    .resume-preview {
+        padding: 35px 25px;
+        min-height: auto;
+    }
+
+    .resume-header h1 {
+        font-size: 26px;
+    }
+
+    .resume-header h2 {
+        font-size: 15px;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .contact-info span::after {
+        display: none !important;
+    }
+
+    .profile-links {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .item-header {
+        align-items: flex-start;
+    }
+
+    .remove-btn {
+        flex-shrink: 0;
+    }
+}
+
+
+/* =========================================================
+   29. SMALL MOBILE DEVICES
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .container {
+        width: 95%;
+    }
+
+    .form-card {
+        padding: 15px;
+    }
+
+    .resume-preview {
+        padding: 25px 18px;
+    }
+
+    .resume-header h1 {
+        font-size: 22px;
+    }
+
+    .resume-section h3 {
+        font-size: 13px;
+    }
+
+    input,
+    textarea {
+        font-size: 13px;
+    }
+}
+
+
+/* =========================================================
+   30. MODERN UI REFRESH
+   ========================================================= */
+
+:root {
+    --ink: #18221f;
+    --muted: #6d7974;
+    --canvas: #edf3fc;
+    --surface: #ffffff;
+    --line: #dce4de;
+    --accent: #2f6fed;
+    --accent-dark: #1f54b5;
+    --deep: #102a56;
+    --soft: #f4f7fd;
+}
+
+body {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(47, 111, 237, 0.12), transparent 24rem),
+        linear-gradient(135deg, #f7faff 0%, var(--canvas) 55%, #e8effc 100%);
+    color: var(--ink);
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+button {
+    min-height: 44px;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.header {
+    background: var(--deep);
+    padding: 28px 0 30px;
+    border-bottom: 4px solid var(--accent);
+    box-shadow: 0 12px 30px rgba(16, 42, 86, 0.16);
+}
+
+.logo {
+    gap: 13px;
+}
+
+.logo span {
+    display: grid;
+    width: 43px;
+    height: 43px;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--accent);
+    font-size: 24px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    letter-spacing: 0.2px;
+}
+
+.header-subtitle {
+    color: #d6e0da;
+}
+
+.top-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-btn {
+    min-height: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 10px;
+    padding: 0 16px;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 180ms ease;
+}
+
+.nav-btn:hover {
+    border-color: #8eb4ff;
+    background: rgba(47, 111, 237, 0.3);
+    transform: translateY(-1px);
+}
+
+.account-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #d6e0da;
+    font-size: 12px;
+}
+
+.account-btn,
+.logout-btn {
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 9px;
+    padding: 9px 14px;
+    background: transparent;
+    color: white;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 180ms ease;
+}
+
+.account-btn:hover,
+.logout-btn:hover {
+    border-color: var(--accent);
+    background: rgba(47, 111, 237, 0.18);
+}
+
+.auth-dialog {
+    width: min(92vw, 410px);
+    padding: 0;
+    border: 0;
+    border-radius: 18px;
+    color: var(--ink);
+    box-shadow: 0 24px 80px rgba(24, 34, 31, 0.28);
+}
+
+.auth-dialog::backdrop {
+    background: rgba(24, 34, 31, 0.52);
+    backdrop-filter: blur(4px);
+}
+
+.auth-dialog form {
+    position: relative;
+    display: grid;
+    gap: 10px;
+    padding: 32px;
+}
+
+.dialog-kicker {
+    margin: 0;
+    color: var(--accent-dark);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.auth-dialog h2 {
+    margin: 0 0 4px;
+    color: var(--deep);
+    font-size: 28px;
+}
+
+.auth-message {
+    margin: 0 0 12px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.auth-message.is-error {
+    color: #b4422c;
+}
+
+.auth-dialog label {
+    color: #405049;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.auth-dialog input {
+    margin-bottom: 7px;
+}
+
+.dialog-close {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.auth-switch {
+    border: 0;
+    background: transparent;
+    color: var(--accent-dark);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.main-container {
+    grid-template-columns: minmax(390px, 0.9fr) minmax(520px, 1.1fr);
+    gap: 34px;
+    padding: 42px 0 60px;
+}
+
+.section-heading {
+    margin-bottom: 24px;
+    position: relative;
+    padding-left: 18px;
+}
+
+.section-heading::before {
+    position: absolute;
+    top: 6px;
+    bottom: 4px;
+    left: 0;
+    width: 4px;
+    border-radius: 4px;
+    background: var(--accent);
+    content: "";
+    transform-origin: top;
+    animation: grow-line 700ms 180ms ease-out both;
+}
+
+.section-heading h2,
+.preview-header h2 {
+    color: var(--deep);
+    letter-spacing: -0.5px;
+}
+
+.section-heading p,
+.preview-header p {
+    color: var(--muted);
+}
+
+.preview-header::after {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    min-height: 44px;
+    box-sizing: border-box;
+    border: 1px solid #b9d0fa;
+    border-radius: 10px;
+    padding: 0 15px;
+    background: #eef4ff;
+    color: var(--accent-dark);
+    content: "LIVE PREVIEW";
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-align: center;
+    animation: status-blink 2.8s ease-in-out infinite;
+}
+
+.form-card {
+    border: 1px solid rgba(220, 228, 222, 0.95);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 18px;
+    box-shadow: 0 10px 26px rgba(16, 42, 86, 0.055);
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.form-card:hover {
+    border-color: #c9d9ce;
+    box-shadow: 0 14px 30px rgba(16, 42, 86, 0.09);
+    transform: translateY(-2px);
+}
+
+.form-card h3 {
+    color: var(--deep);
+}
+
+.form-card > p,
+.card-header p {
+    color: var(--muted);
+}
+
+.form-group label {
+    color: #405049;
+    font-size: 13px;
+    letter-spacing: 0.15px;
+}
+
+input,
+textarea,
+select {
+    border-color: #d4ded7;
+    border-radius: 10px;
+    background: #fbfcfb;
+    color: var(--ink);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(47, 111, 237, 0.14);
+    background: white;
+}
+
+.dynamic-item {
+    background: var(--soft);
+    border-color: #dce5de;
+    border-radius: 12px;
+    transition: border-color 180ms ease, background 180ms ease;
+}
+
+.dynamic-item:focus-within {
+    border-color: rgba(47, 111, 237, 0.55);
+    background: #fffaf7;
+}
+
+.item-header h4 {
+    color: var(--deep);
+}
+
+.add-btn,
+.primary-btn {
+    background: var(--accent);
+}
+
+.add-btn,
+.primary-btn,
+.print-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.add-btn::after,
+.primary-btn::after,
+.print-btn::after {
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 42%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.24), transparent);
+    content: "";
+    transform: skewX(-18deg);
+}
+
+.add-btn:hover::after,
+.primary-btn:hover::after,
+.print-btn:hover::after {
+    animation: button-sheen 650ms ease-out;
+}
+
+.add-btn:hover,
+.primary-btn:hover {
+    background: var(--accent-dark);
+}
+
+.remove-btn {
+    border-color: #f1c8ba;
+    background: #fff8f5;
+    color: var(--accent-dark);
+}
+
+.remove-btn:hover {
+    background: #ffede6;
+}
+
+.secondary-btn {
+    background: #e0e8e2;
+    color: var(--deep);
+}
+
+.secondary-btn:hover {
+    background: #d2ded5;
+}
+
+.preview-section {
+    top: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.preview-actions {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.ats-btn {
+    border: 1px solid #b9d0fa;
+    border-radius: 10px;
+    padding: 13px 15px;
+    background: #eef4ff;
+    color: var(--accent-dark);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    height: 44px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: 180ms ease;
+}
+
+.ats-btn:hover {
+    border-color: var(--accent);
+    background: #e2ecff;
+    transform: translateY(-1px);
+}
+
+.ats-result {
+    margin: 0 0 18px;
+    padding: 16px 18px;
+    border: 1px solid #cbd9ee;
+    border-left: 4px solid var(--accent);
+    border-radius: 12px;
+    background: #f7faff;
+    color: #42536d;
+    font-size: 13px;
+    animation: rise-in 350ms ease-out both;
+}
+
+.ats-result p {
+    margin: 5px 0 0;
+}
+
+.ats-score {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    color: var(--deep);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.ats-score strong {
+    color: var(--accent-dark);
+    font-size: 24px;
+}
+
+.ats-result ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    margin: 10px 0 0;
+    padding-left: 18px;
+}
+
+.ats-result.is-good {
+    border-left-color: #2f8a5a;
+    background: #f2fbf5;
+}
+
+.ats-result.is-good .ats-score strong,
+.ats-success {
+    color: #267346;
+}
+
+.ats-result.is-medium {
+    border-left-color: #d49b28;
+    background: #fffaf0;
+}
+
+.ats-result.is-medium .ats-score strong {
+    color: #a66d08;
+}
+
+.ats-result.is-low {
+    border-left-color: #c45151;
+    background: #fff7f7;
+}
+
+.ats-result.is-low .ats-score strong {
+    color: #ad3838;
+}
+
+.upload-checker {
+    margin: 0 0 20px;
+    padding: 18px;
+    border: 1px solid #d6e1f2;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.upload-checker > .back-btn {
+    margin-bottom: 18px;
+}
+
+.upload-checker h3 {
+    margin: 0 0 4px;
+    color: var(--deep);
+    font-size: 16px;
+}
+
+.upload-checker p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.upload-controls {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 14px;
+}
+
+.file-picker,
+.upload-check-btn {
+    border: 1px solid #c9d8f4;
+    border-radius: 9px;
+    padding: 10px 13px;
+    background: #f3f7ff;
+    color: var(--accent-dark);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 180ms ease;
+}
+
+.file-picker:hover,
+.upload-check-btn:hover {
+    border-color: var(--accent);
+    background: #e6efff;
+}
+
+.file-picker input {
+    display: none;
+}
+
+.upload-check-btn {
+    background: var(--accent);
+    color: white;
+}
+
+.upload-check-btn:hover {
+    background: var(--accent-dark);
+    color: white;
+}
+
+.remove-file-btn {
+    border: 1px solid #f0c8c8;
+    border-radius: 9px;
+    padding: 10px 13px;
+    background: #fff7f7;
+    color: #ad3838;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 180ms ease;
+}
+
+.remove-file-btn:hover {
+    background: #ffeded;
+}
+
+.upload-file-name {
+    overflow: hidden;
+    margin-top: 9px !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.upload-result {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 12px;
+    padding: 11px 13px;
+    border-radius: 9px;
+    background: #f7faff;
+    color: #42536d;
+    font-size: 12px;
+}
+
+.upload-result:not([hidden]),
+.ats-result:not([hidden]) {
+    animation: result-pop 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.upload-result strong {
+    color: var(--deep);
+    font-size: 14px;
+}
+
+.upload-result.is-good {
+    background: #f2fbf5;
+}
+
+.upload-result.is-good strong {
+    color: #267346;
+}
+
+.upload-result.is-warning {
+    background: #fffaf0;
+}
+
+.upload-result.is-warning strong {
+    color: #a66d08;
+}
+
+.upload-result.is-low {
+    background: #fff7f7;
+}
+
+.upload-result.is-low strong {
+    color: #ad3838;
+}
+
+.download-btn {
+    border: 1px solid #c9d8f4;
+    border-radius: 10px;
+    padding: 13px 16px;
+    background: #f3f7ff;
+
+    .upload-controls {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .file-picker,
+    .upload-check-btn {
+        text-align: center;
+    }
+    color: var(--accent-dark);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    height: 44px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: 180ms ease;
+}
+
+.download-btn:hover {
+    border-color: var(--accent);
+    background: #e6efff;
+    transform: translateY(-1px);
+}
+
+.print-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--deep);
+    border-radius: 10px;
+    height: 44px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.print-btn:hover {
+    background: #29483f;
+}
+
+.resume-preview {
+    align-self: center;
+    border: none;
+    border-top: 6px solid var(--accent);
+    border-radius: 4px;
+    box-shadow: 0 18px 42px rgba(16, 42, 86, 0.14);
+}
+
+.resume-header {
+    border-bottom-color: var(--deep);
+}
+
+.resume-header h1,
+.resume-section h3 {
+    color: var(--deep);
+}
+
+.profile-links a,
+.project-preview-item .project-tech,
+.project-preview-item a {
+    color: var(--accent-dark);
+}
+
+.footer {
+    background: var(--deep);
+}
+
+@keyframes rise-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    min-height: 44px;
+    width: 220px;
+    min-width: 220px;
+    box-sizing: border-box;
+    border: 1px solid #c9d8f4;
+    border-radius: 10px;
+    padding: 13px 15px;
+    background: #f3f7ff;
+    color: var(--accent-dark);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    text-align: center;
+    cursor: pointer;
+    transition: 180ms ease;
+}
+
+.back-btn:hover {
+    border-color: var(--accent);
+    background: #e6efff;
+    transform: translateY(-1px);
+}
+
+@keyframes soft-float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes grow-line {
+    from {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes status-blink {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(47, 111, 237, 0);
+    }
+    50% {
+        box-shadow: 0 0 0 4px rgba(47, 111, 237, 0.09);
+    }
+}
+
+@keyframes button-sheen {
+    from {
+        left: -75%;
+    }
+    to {
+        left: 135%;
+    }
+}
+
+@keyframes result-pop {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.header {
+    animation: rise-in 650ms ease-out both;
+}
+
+.section-heading,
+.preview-header {
+    animation: rise-in 650ms 100ms ease-out both;
+}
+
+.form-card {
+    animation: rise-in 650ms ease-out both;
+}
+
+.form-card:nth-of-type(2) {
+    animation-delay: 100ms;
+}
+
+.form-card:nth-of-type(3) {
+    animation-delay: 160ms;
+}
+
+.form-card:nth-of-type(4) {
+    animation-delay: 220ms;
+}
+
+.form-card:nth-of-type(5) {
+    animation-delay: 280ms;
+}
+
+.form-card:nth-of-type(6) {
+    animation-delay: 340ms;
+}
+
+.resume-preview {
+    animation: rise-in 700ms 180ms ease-out both;
+}
+
+.logo span {
+    animation: soft-float 4s 900ms ease-in-out infinite;
+}
+
+.primary-btn:active,
+.print-btn:active,
+.add-btn:active,
+.secondary-btn:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .preview-actions {
+        width: 100%;
+    }
+
+    .back-btn,
+    .download-btn,
+    .ats-btn,
+    .preview-actions .print-btn {
+        flex: 1;
+    }
+}
+
+@media (max-width: 760px) {
+
+    .preview-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .preview-actions button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .top-nav {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .nav-btn {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   31. PRINT / SAVE AS PDF
+   ========================================================= */
+
+@media print {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    body {
+        background: white;
+    }
+
+    .header,
+    .form-section,
+    .preview-header,
+    .footer {
+        display: none !important;
+    }
+
+    .main-container {
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .preview-section {
+        width: 100%;
+        position: static;
+    }
+
+    .resume-preview {
+        width: 210mm;
+        min-height: 297mm;
+        max-width: none;
+        margin: 0;
+        padding: 18mm;
+        border: none;
+        box-shadow: none;
+    }
+
+    .resume-section {
+        break-inside: avoid;
+    }
+
+    .education-preview-item,
+    .project-preview-item,
+    .certification-preview-item {
+        break-inside: avoid;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+
+/* =========================================================
+   31. ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+a:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.35);
+    outline-offset: 2px;
+}
+
+
