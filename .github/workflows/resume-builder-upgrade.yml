@@ -1,0 +1,103 @@
+name: Resume Builder Upgrade
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install-upgrade:
+    if: ${{ !contains(github.event.head_commit.message, 'feat: install resume builder upgrade pack') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install feature pack
+        shell: bash
+        run: |
+          set -e
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          marker = '<!-- RESUME_BUILDER_UPGRADE_PACK -->'
+          if marker not in s:
+              s = s.replace('</head>', '    <link rel="stylesheet" href="resume-builder-features.css">\n    <!-- RESUME_BUILDER_UPGRADE_PACK -->\n</head>', 1)
+              s = s.replace('<script src="script.js"></script>', '<script src="script.js"></script>\n    <script src="resume-builder-features.js"></script>', 1)
+              p.write_text(s, encoding='utf-8')
+          PY
+
+          cat > resume-builder-features.css <<'CSS'
+          /* Resume Builder Upgrade Pack */
+          .rb-upgrade-panel{margin:18px 0;padding:18px;border:1px solid #dbe4f0;border-radius:16px;background:#fff;box-shadow:0 8px 28px rgba(15,23,42,.06)}
+          .rb-upgrade-panel h3{margin:0 0 8px}.rb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}.rb-grid label{display:flex;flex-direction:column;gap:5px;font-size:.85rem;font-weight:700}.rb-grid input,.rb-grid select,.rb-grid textarea{width:100%;box-sizing:border-box;padding:10px;border:1px solid #cbd5e1;border-radius:10px;background:#fff}.rb-grid textarea{min-height:100px;resize:vertical}.rb-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.rb-actions button{border:0;border-radius:10px;padding:10px 13px;font-weight:700;cursor:pointer}.rb-primary{background:#2563eb;color:#fff}.rb-secondary{background:#eef2ff;color:#1e3a8a}.rb-danger{background:#fee2e2;color:#991b1b}.rb-score{font-size:1.4rem;font-weight:800;margin-top:10px}.rb-muted{color:#64748b;font-size:.86rem}.rb-template-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:10px}.rb-template{padding:10px;border:1px solid #dbe4f0;border-radius:10px;background:#f8fafc;text-align:left;cursor:pointer}.rb-template.active{border-color:#2563eb;box-shadow:0 0 0 2px rgba(37,99,235,.12)}
+          .resume-preview.rb-classic{font-family:Georgia,serif}.resume-preview.rb-modern{font-family:Inter,Arial,sans-serif}.resume-preview.rb-ats{font-family:Arial,sans-serif;border-radius:0}.resume-preview.rb-student{font-family:Arial,sans-serif}.resume-preview.rb-cyber{font-family:monospace;background:#0b1220;color:#e5e7eb}.resume-preview.rb-cyber a{color:#93c5fd}.resume-preview.rb-developer{font-family:Inter,Arial,sans-serif}.resume-preview.rb-executive{font-family:Georgia,serif}.resume-preview.rb-academic{font-family:Georgia,serif}.resume-preview.rb-creative{font-family:Arial,sans-serif}.resume-preview.rb-elegant{font-family:Arial,sans-serif}
+          .resume-preview.rb-cyber .resume-section h3,.resume-preview.rb-cyber .resume-header h1{color:#67e8f9}.resume-preview.rb-cyber .resume-section{border-color:#334155}.rb-extra-section{margin-top:14px}.rb-extra-section h3{border-bottom:1px solid currentColor;padding-bottom:5px}.rb-warning{padding:9px;border-radius:9px;background:#fff7ed;color:#9a3412;margin-top:8px}.rb-ok{padding:9px;border-radius:9px;background:#ecfdf5;color:#166534;margin-top:8px}
+          @media(max-width:700px){.rb-grid{grid-template-columns:1fr}.rb-template-grid{grid-template-columns:1fr 1fr}.rb-upgrade-panel{padding:13px}}
+          @media print{.rb-upgrade-panel{display:none!important}.resume-preview{box-shadow:none!important}.rb-extra-section{break-inside:avoid}}
+          CSS
+
+          cat > resume-builder-features.js <<'JS'
+          /* Online Resume Builder — Upgrade Pack v1 */
+          (() => {
+            'use strict';
+            const KEY='orb_upgrade_v1';
+            const DRAFTS='orb_drafts_v1';
+            const templates=[
+              ['classic','Classic Professional'],['modern','Modern Minimal'],['ats','ATS Pro'],['student','Student / Fresher'],['cyber','Cybersecurity / Technical'],
+              ['developer','Software Developer'],['executive','Corporate Executive'],['academic','Academic / Research'],['creative','Creative Portfolio'],['elegant','Elegant Two-Column']
+            ];
+            const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+            const val=id=>{const e=document.getElementById(id);return e?e.value.trim():''};
+            const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+            function data(){const f={}; qa('input[id],textarea[id],select[id]').forEach(e=>{if(e.id)f[e.id]=e.value}); return f}
+            function save(){try{localStorage.setItem(KEY,JSON.stringify(data()));const s=q('#rbSaveState');if(s)s.textContent='Saved locally ✓'}catch{}}
+            function restore(){try{const d=JSON.parse(localStorage.getItem(KEY)||'null');if(!d)return;Object.entries(d).forEach(([id,v])=>{const e=document.getElementById(id);if(e&&typeof v==='string')e.value=v})}catch{}}
+            function completeness(){const ids=['fullName','email','phone','jobTitle','professionalSummary','technicalSkills','education'];let n=0;ids.forEach(id=>{const e=document.getElementById(id);if(e&&e.value.trim())n++});return Math.round(n/ids.length*100)}
+            function buildPanel(){
+              const main=q('#mainContainer'); if(!main||q('#rbUpgradePanel'))return;
+              const sec=document.createElement('section'); sec.className='rb-upgrade-panel'; sec.id='rbUpgradePanel';
+              sec.innerHTML=`<h3>🚀 Resume Builder Pro Upgrade</h3><p class="rb-muted">10 templates + smart resume tools. Everything stays in your browser by default.</p>
+                <div class="rb-template-grid">${templates.map(([id,n])=>`<button type="button" class="rb-template" data-template="${id}">${n}</button>`).join('')}</div>
+                <div class="rb-grid" style="margin-top:12px">
+                  <label>Font size <input id="rbFontSize" type="number" min="10" max="18" value="14"></label>
+                  <label>Page size <select id="rbPageSize"><option>A4</option><option>Letter</option></select></label>
+                  <label>Accent color <input id="rbAccent" type="color" value="#2563eb"></label>
+                  <label>Resume name <input id="rbDraftName" placeholder="My Resume"></label>
+                </div>
+                <div class="rb-actions"><button class="rb-primary" id="rbSave">💾 Save Draft</button><button class="rb-secondary" id="rbExport">⬇ Export JSON</button><button class="rb-secondary" id="rbImportBtn">⬆ Import JSON</button><input id="rbImport" type="file" accept="application/json" hidden><button class="rb-secondary" id="rbShare">↗ Share</button><button class="rb-secondary" id="rbUndo">↶ Undo</button><button class="rb-secondary" id="rbRedo">↷ Redo</button></div>
+                <div class="rb-score" id="rbScore">Resume completeness: 0%</div><div id="rbDraftList"></div>
+                <div class="rb-grid" style="margin-top:12px"><label style="grid-column:1/-1">Job Description / Keywords<textarea id="rbJobDescription" placeholder="Paste a job description to check keyword alignment..."></textarea></label></div><div id="rbJobResult" class="rb-muted">Paste a job description to run a local ATS match.</div>
+                <div class="rb-grid" style="margin-top:12px"><label>Work Experience / Internship<textarea id="rbExperience" placeholder="Role — Company — Dates\nKey achievements..."></textarea></label><label>Volunteer / Leadership<textarea id="rbVolunteer" placeholder="Organization, role, impact..."></textarea></label><label>Publications / Research<textarea id="rbResearch" placeholder="Paper, project, research work..."></textarea></label><label>Courses / Workshops<textarea id="rbTraining" placeholder="Courses, workshops, conferences..."></textarea></label><label>Open Source / Memberships<textarea id="rbOpenSource" placeholder="GitHub, communities, memberships..."></textarea></label><label>Custom Section<textarea id="rbCustom" placeholder="Any additional information..."></textarea></label></div>
+                <div id="rbSaveState" class="rb-muted">Autosave ready</div>`;
+              main.insertBefore(sec,main.firstChild);
+              qa('.rb-template').forEach(b=>b.addEventListener('click',()=>applyTemplate(b.dataset.template)));
+              q('#rbSave').onclick=saveDraft; q('#rbExport').onclick=exportJSON; q('#rbImportBtn').onclick=()=>q('#rbImport').click(); q('#rbImport').onchange=importJSON; q('#rbShare').onclick=shareResume;
+              q('#rbUndo').onclick=()=>historyStep(-1); q('#rbRedo').onclick=()=>historyStep(1); q('#rbFontSize').oninput=stylePreview; q('#rbPageSize').onchange=stylePreview; q('#rbAccent').oninput=stylePreview;
+              q('#rbJobDescription').oninput=jobMatch; ['rbExperience','rbVolunteer','rbResearch','rbTraining','rbOpenSource','rbCustom'].forEach(id=>q('#'+id).oninput=()=>{renderExtras();save()});
+              qa('input,textarea,select').forEach(e=>{e.addEventListener('input',()=>{save();score()})});
+              restore(); score(); renderDrafts(); renderExtras();
+            }
+            function applyTemplate(t){const p=q('#resumePreview');if(!p)return;p.className='resume-preview rb-'+t;qa('.rb-template').forEach(b=>b.classList.toggle('active',b.dataset.template===t));localStorage.setItem('orb_template',t);stylePreview()}
+            function stylePreview(){const p=q('#resumePreview');if(!p)return;const fs=q('#rbFontSize')?.value||14;p.style.fontSize=fs+'px';p.style.setProperty('--rb-accent',q('#rbAccent')?.value||'#2563eb');p.dataset.pageSize=q('#rbPageSize')?.value||'A4';p.style.setProperty('--accent',p.style.getPropertyValue('--rb-accent'))}
+            function score(){const s=q('#rbScore');if(s)s.textContent='Resume completeness: '+completeness()+'%';}
+            function jobMatch(){const text=(q('#rbJobDescription')?.value||'').toLowerCase();if(!text){q('#rbJobResult').textContent='Paste a job description to run a local ATS match.';return}const resume=Object.values(data()).join(' ').toLowerCase();const words=[...new Set((text.match(/[a-z][a-z0-9+#.-]{2,}/g)||[]))].filter(w=>!['the','and','for','with','you','your','our','are','this','that','from','will','have','has','not','but','job','work','role'].includes(w));const hits=words.filter(w=>resume.includes(w));const pct=words.length?Math.round(hits.length/words.length*100):0;q('#rbJobResult').innerHTML=`<strong>Local keyword match: ${pct}%</strong><br>Matched: ${esc(hits.slice(0,25).join(', ')||'None')}<br>Missing examples: ${esc(words.filter(w=>!hits.includes(w)).slice(0,20).join(', ')||'None')}`}
+            function renderExtras(){const p=q('#resumePreview');if(!p)return;let box=q('#rbExtraPreview');if(!box){box=document.createElement('div');box.id='rbExtraPreview';p.appendChild(box)}const sections=[['Experience','rbExperience'],['Volunteer & Leadership','rbVolunteer'],['Research & Publications','rbResearch'],['Courses & Workshops','rbTraining'],['Open Source & Memberships','rbOpenSource'],['Additional Information','rbCustom']];box.innerHTML=sections.map(([n,id])=>{const v=val(id);return v?`<section class="resume-section rb-extra-section"><h3>${n.toUpperCase()}</h3><p>${esc(v).replace(/\n/g,'<br>')}</p></section>`:''}).join('')}
+            function snapshot(){return JSON.stringify(data())}; let undo=[],redo=[]; function historyStep(dir){const a=dir<0?undo:redo,b=dir<0?redo:undo;if(!a.length)return; b.push(snapshot());const d=JSON.parse(a.pop());Object.entries(d).forEach(([id,v])=>{const e=document.getElementById(id);if(e)e.value=v});save();score();renderExtras()}
+            function saveDraft(){const list=JSON.parse(localStorage.getItem(DRAFTS)||'[]');const name=q('#rbDraftName').value.trim()||'My Resume';list.push({name,at:new Date().toISOString(),data:data()});localStorage.setItem(DRAFTS,JSON.stringify(list.slice(-10)));renderDrafts()}
+            function renderDrafts(){const el=q('#rbDraftList');if(!el)return;const list=JSON.parse(localStorage.getItem(DRAFTS)||'[]');el.innerHTML=list.length?'<p class="rb-muted"><strong>Saved drafts</strong>: '+list.map((d,i)=>`<button type="button" class="rb-template" data-draft="${i}">${esc(d.name)} · ${new Date(d.at).toLocaleDateString()}</button>`).join(' ')+'</p>':'';qa('[data-draft]').forEach(b=>b.onclick=()=>{const d=list[+b.dataset.draft];Object.entries(d.data).forEach(([id,v])=>{const e=document.getElementById(id);if(e)e.value=v});save();score();renderExtras()})}
+            function exportJSON(){const blob=new Blob([JSON.stringify({version:1,exportedAt:new Date().toISOString(),resume:data()},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(q('#rbDraftName').value.trim()||'resume')+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
+            function importJSON(e){const f=e.target.files?.[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);Object.entries(o.resume||o).forEach(([id,v])=>{const x=document.getElementById(id);if(x&&typeof v==='string')x.value=v});save();score();renderExtras()}catch{alert('Invalid resume JSON file.')}};r.readAsText(f)}
+            async function shareResume(){if(navigator.share){try{await navigator.share({title:'My Resume',text:'Resume created with Online Resume Builder'})}catch{}}else{await navigator.clipboard?.writeText(location.href);alert('Resume builder link copied.')}}
+            function hookGenerate(){const b=q('#generateResumeBtn');if(!b)return;b.addEventListener('click',()=>setTimeout(()=>{renderExtras();stylePreview();score()},250));}
+            document.addEventListener('DOMContentLoaded',()=>{buildPanel();hookGenerate();const t=localStorage.getItem('orb_template')||'modern';applyTemplate(t);setInterval(()=>{save();score()},5000);document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();saveDraft()}})});
+          })();
+          JS
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html resume-builder-features.css resume-builder-features.js
+          git diff --cached --quiet || git commit -m "feat: install resume builder upgrade pack"
+          git push
